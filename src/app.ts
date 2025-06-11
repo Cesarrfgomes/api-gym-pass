@@ -1,6 +1,4 @@
 import fastify from 'fastify'
-import { z } from 'zod'
-import { prisma } from './lib/prisma'
 import { usersRoutes } from './http/routes/users'
 import { ZodError } from 'zod/v4'
 import { env } from './env'
