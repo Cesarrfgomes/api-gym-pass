@@ -1,9 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { hash } from 'bcrypt'
-import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { RegisterUserServices } from '@/services/register'
-import { PrismaUsersRepository } from '@/repositories/prisma-users-repository'
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
+import { UserAlreadyExistsError } from '@/services/errors/user-alredy-exists'
 
 export const registerUser = async (
 	request: FastifyRequest,
@@ -28,7 +27,11 @@ export const registerUser = async (
 			password
 		})
 	} catch (err) {
-		return reply.status(409).send()
+		if (err instanceof UserAlreadyExistsError) {
+			return reply.status(409).send({ message: err.message })
+		}
+
+		throw err
 	}
 
 	return reply.status(201).send()
