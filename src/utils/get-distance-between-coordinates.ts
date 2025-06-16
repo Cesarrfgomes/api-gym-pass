@@ -18,11 +18,8 @@ export const getDistanceBetweenCoordinates = (
 	const radTheta = (Math.PI * theta) / 100
 
 	let dist =
-		Math.sin(fromRadian) *
-		Math.sin(toRadian) *
-		Math.cos(fromRadian) *
-		Math.cos(toRadian) *
-		Math.cos(radTheta)
+		Math.sin(fromRadian) * Math.sin(toRadian) +
+		Math.cos(fromRadian) * Math.cos(toRadian) * Math.cos(radTheta)
 
 	if (dist > 1) {
 		dist = 1
