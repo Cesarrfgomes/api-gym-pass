@@ -6,6 +6,12 @@ import dayjs from 'dayjs'
 export class InMemoryCheckInsRepository implements CheckInRepository {
 	public checkIns: CheckIn[] = []
 
+	async findManyByUserId(userId: string, page: number): Promise<CheckIn[]> {
+		return this.checkIns
+			.filter(item => item.user_id === userId)
+			.slice((page - 1) * 20, page * 20)
+	}
+
 	async findByUserIdOnDate(
 		userId: string,
 		date: Date
@@ -15,20 +21,17 @@ export class InMemoryCheckInsRepository implements CheckInRepository {
 
 		const checkInOnSameDate = this.checkIns.find(item => {
 			const checkInDate = dayjs(item.created_at)
+
 			const isOnSameDate =
 				checkInDate.isAfter(startOfTheDay) &&
 				checkInDate.isBefore(endOfTheDay)
 
-			item.user_id === userId && isOnSameDate
+			return item.user_id === userId && isOnSameDate
 		})
 
 		if (!checkInOnSameDate) {
 			return null
 		}
-
-		console.log('in memory')
-		console.log(checkInOnSameDate)
-
 		return checkInOnSameDate
 	}
 
