@@ -28,7 +28,7 @@ describe('Authenticate services', () => {
 	})
 
 	it('should not be able to authenticate', async () => {
-		expect(
+		await expect(
 			sut.auth({
 				email: 'truvejano@minoxidil.com',
 				password: '123456'
@@ -43,7 +43,7 @@ describe('Authenticate services', () => {
 			password_hash: await hash('123456', 6)
 		})
 
-		expect(
+		await expect(
 			sut.auth({
 				email: 'truvejano@minoxidil.com',
 				password: '12342ssss56'

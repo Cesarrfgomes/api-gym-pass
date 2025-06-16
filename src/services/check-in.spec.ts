@@ -17,7 +17,7 @@ describe('Check-in services', () => {
 		gymsRepository = new InMemoryGymsRepository()
 		sut = new CheckInService(checkInRepository, gymsRepository)
 
-		const { id } = await gymsRepository.create({
+		await gymsRepository.create({
 			id: '123456',
 			title: 'Fit5Cinco',
 			description: 'Academia',

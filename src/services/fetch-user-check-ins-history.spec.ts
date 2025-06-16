@@ -1,11 +1,6 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository'
-import { CheckInService } from './check-in'
-import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
-import { Decimal } from '@prisma/client/runtime/client'
-import { MaxDistanceError } from './errors/max-distance-error'
-import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins-error'
+
 import { FetchUserCheckInsHistoryService } from './fetch-user-check-ins-history'
 
 let checkInRepository: InMemoryCheckInsRepository
@@ -33,8 +28,6 @@ describe('Fetch check-ins services', () => {
 			page: 1
 		})
 
-		console.log(checkIns)
-
 		expect(checkIns).toHaveLength(2)
 		expect(checkIns).toEqual([
 			expect.objectContaining({ gym_id: 'gym-01' }),
@@ -54,8 +47,6 @@ describe('Fetch check-ins services', () => {
 			userId: 'user-01',
 			page: 2
 		})
-
-		console.log(checkIns)
 
 		expect(checkIns).toHaveLength(2)
 		expect(checkIns).toEqual([
