@@ -26,11 +26,6 @@ describe('Nearby Gyms (e2e)', () => {
 				longitude: -38.9666731
 			})
 
-		//-12.1875381 -38.961198
-
-		// latitude: -12.2691398,
-		// 		longitude: -38.9598587
-
 		await request(app.server)
 			.post('/gyms')
 			.set('Authorization', `Bearer ${token}`)
