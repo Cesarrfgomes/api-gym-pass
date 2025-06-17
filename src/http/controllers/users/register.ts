@@ -26,6 +26,7 @@ export const registerUser = async (
 			password
 		})
 	} catch (err) {
+		console.log(err)
 		if (err instanceof UserAlreadyExistsError) {
 			return reply.status(409).send({ message: err.message })
 		}
