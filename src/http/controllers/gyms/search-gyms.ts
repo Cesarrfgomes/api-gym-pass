@@ -11,7 +11,7 @@ export const searchGyms = async (
 		page: z.coerce.number().min(1).default(1)
 	})
 
-	const { page, query } = searchGymsParamsSchema.parse(request.body)
+	const { page, query } = searchGymsParamsSchema.parse(request.query)
 
 	const searchGymsService = makeSearchGymsService()
 
