@@ -1,5 +1,3 @@
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository'
-import { AuthenticateService } from '@/services/authenticate'
 import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error'
 import { makeAuthenticateUserService } from '@/services/factories/make-authenticate-user-service'
 import { FastifyReply, FastifyRequest } from 'fastify'
