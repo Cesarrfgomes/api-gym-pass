@@ -13,9 +13,9 @@ jobs:
                 ports:
                     - '5433:5432'
                 env:
-                    - POSTGRES_USER=docker
-                    - POSTGRES_PASSWORD=docker
-                    - POSTGRES_DB=gympass
+                    POSTGRES_USER: docker
+                    POSTGRES_PASSWORD: docker
+                    POSTGRES_DB: gympass
 
         steps:
             - uses: actions/checkout@v3
